@@ -1,0 +1,21 @@
+{% extends "blogs/layout.html" %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+
+    <h2>Edit Post:</h2>
+
+{% endblock header %}
+
+
+{% block body %}
+
+    <form action="{% url 'blogs:edit_post' blog.id post.id %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button type="submit" content="Edit post" %}
+    </form>
+
+    <p class="mt-2 small">Return to <a href="{% url 'blogs:post' blog.id post.id%}">post</a>.</p>
+
+{% endblock body %}

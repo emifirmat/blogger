@@ -1,0 +1,18 @@
+{% extends "blogs/layout.html" %}
+
+{% block header %}
+    <h2>Blogs:</h2>
+{% endblock header %}
+
+{% block body %}
+
+    <div class="list-group mt-3">
+        {% for blog in blogs %}
+            <a class="list-group-item" href="{% url 'blogs:blog' blog.id %}">
+                {{ blog.name }}
+            </a>
+        {% empty %}
+            <p>No blogs were created yet</p>
+        {% endfor %}
+    </div>
+{% endblock body %}

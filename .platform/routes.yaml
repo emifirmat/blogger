@@ -1,0 +1,9 @@
+# Each route describes how an incoming url will be processed by Platform.sh
+
+"https://{default}/":
+    type: upstream
+    upstream: "blogger:http"
+
+"https://www.{default}/":
+    type: redirect
+    to: "https://{default}/"

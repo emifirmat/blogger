@@ -1,0 +1,18 @@
+{% extends "blogs/layout.html" %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+
+    <h2>New Post:</h2>
+
+{% endblock header %}
+
+{% block body %}
+    
+    <form action="{% url 'blogs:new_post' blog.id %}" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button type="submit" content="Create" %}
+    </form>
+
+{% endblock body %}

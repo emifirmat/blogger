@@ -1,0 +1,33 @@
+{% extends "blogs/layout.html" %}
+{% load django_bootstrap5 %}
+
+{% block header %}
+
+    <h2>Blog: <a class="link-secondary" style="text-decoration:none"
+        href="{% url 'blogs:blog' blog.id %}">{{ blog.name }}</a></h2>
+    
+{% endblock header %}
+
+{% block body %}
+
+    {% if request.user == blog.owner %}
+        <a class="mt-1" href="{% url 'blogs:new_post' blog.id %}">Create a new post</a>
+    {% endif %}
+  
+    {% for post in posts %}
+        <div class="card my-3">
+            <h3 class="card-header">
+                <a href="{% url 'blogs:post' blog.id post.id %}" 
+                style="text-decoration:none">{{ post.title }}
+                </a>
+            </h3>
+            <div class="card-body">
+                <p>{{ post.content|linebreaks }}</p>
+            </div>
+        </div>        
+    {% empty %}
+        <p class="mt-3">No posts have been created yet.</p>
+    {% endfor %}
+
+
+{% endblock body %}

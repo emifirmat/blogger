@@ -1,0 +1,49 @@
+{% extends "blogs/layout.html" %}
+
+{% block header %}
+
+    <div class="p-3 mb-4 bg-light border rounded-3">
+        <div class="container-fluid py-4">
+            <h1 class="display-3">Create your blog.</h1>
+            <p class="lead">Create your own blog and open your thoughts to the
+            world.</p>
+            <a class="btn btn-primary btn-lg mt-1" href="{% url 'accounts:register' %}">
+                Register &raquo;
+            </a>
+        </div>
+    </div>
+
+{% endblock header %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col">
+        <h2 class="display-4">Last blogs:</h2>
+        <div class="list-group">
+            {% for blog in blogs %}
+                <a class="list-group-item" href="{% url 'blogs:blog' blog.id %}">
+                    {{ blog.name }}
+                </a>
+            {% empty %}
+                <p>Create a new blog!</p>
+            {% endfor %}
+        </div>    
+    </div>
+    <div class="col">
+        <h2 class="display-4">Last posts:</h2>
+        <div class="list-group">
+            {% for post in posts %}
+                <a class="list-group-item list-group-item-action" 
+                href="{% url 'blogs:post' post.blog.id post.id %}">
+                    {{ post.title }} <small class="text-primary">
+                        by {{ post.blog.name }}</small>
+                </a>
+                
+            {% empty %}
+                <p>No posts.</p>
+            {% endfor %}
+            </div>
+    </div>
+</div>
+{% endblock body %}

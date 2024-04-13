@@ -1,0 +1,22 @@
+{% extends "blogs/layout.html" %}
+
+{% block header %}
+
+    <h2>Post: <spam class="text-secondary">{{ post.title }}</spam>
+        {% if request.user == blog.owner %}
+        <spam class="h6"><a href="{% url 'blogs:edit_post' blog.id post.id %}">
+            Edit</a></spam>
+        {% endif%}
+    </h2>
+    
+{% endblock header %}
+
+{% block body %}
+    <div class="container bg-light p-3 border-bottom">
+        <p>{{ post.content }}</p>
+    </div>
+        <p class="mt-2 small">Return to 
+            <a href="{% url 'blogs:blog' blog.id %}">{{ blog.name }}'s</a>
+            blog.
+        </p>
+{% endblock body %}
